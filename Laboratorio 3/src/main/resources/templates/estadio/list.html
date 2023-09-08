@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+    <title>Lista Estadios</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Lista Estadios</h2>
+      <a class="btn btn-primary mt-4 mb-4" th:href="@{/estadio/new}">Nuevo Estadio</a>
+      <table class="table table-sm">
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Provincia</th>
+          <th>Club</th>
+        </tr>
+        <tr th:each="estadiogozu, info: ${listaestadioshtml}">
+          <td th:text="${info.index + 1}"></td>
+          <td th:text="${estadiogozu.nombre}"></td>
+          <td th:text="${estadiogozu.provincia}"></td>
+          <!-- NOTA CÓMO HE HECHO ESTE IF, PARA QUE CUANDO EL VALOR SEA NULO, SE MUESTRE EL MENSAJE DE No tiene propietario
+          QUE ESTÁ EN LA SECCIÓN VERDE-->
+          <!-- ESTA SENTENCIA DICE:
+          SI EL CLUB DEL ESTADIO NO ES NULO, ENTONCES MUESTRA EL CLUB DEL ESTADIO, SINO, MUESTRA EL MENSAJE: "No tiene propietario"-->
+          <td th:text="${estadiogozu.club} != null ? ${estadiogozu.club} : 'No tiene propietario'">No tiene propietario</td>
+          <td><a class="btn btn-danger" th:href="@{'/estadio/borrar?id=' + ${estadiogozu.idEstadio}}">Borrar</a></td>
+        </tr>
+      </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            crossorigin="anonymous"></script>
+  </body>
+</html>
+
