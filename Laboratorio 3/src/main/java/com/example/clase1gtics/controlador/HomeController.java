@@ -11,7 +11,7 @@ public class HomeController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     @ResponseBody
     public String paginaPrincipal(){
-        return "You Want to Play, let's play \uD83D\uDE18 \uD83D\uDD2B";
+        return "Pipipipi no quiero jalar :(";
     }
 
 }
